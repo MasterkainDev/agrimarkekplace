@@ -29,5 +29,6 @@ export const config = {
     '/settings/:path*',
     '/classifieds/new',
     '/shop/orders/:path*',
+    '/auth/callback',
   ],
 };
