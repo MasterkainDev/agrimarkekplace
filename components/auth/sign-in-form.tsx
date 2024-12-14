@@ -52,8 +52,13 @@ export function SignInForm() {
         return;
       }
 
+      toast({
+        title: "Succès",
+        description: "Connexion réussie",
+      });
+      
       router.refresh();
-      router.push("/dashboard");
+      router.push("/");
     } catch (error) {
       toast({
         title: "Erreur",
