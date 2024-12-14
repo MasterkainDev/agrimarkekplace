@@ -10,9 +10,9 @@ export function Footer() {
       <div className="container px-4 py-12 md:py-16">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">AgriMag</h3>
+            <h3 className="text-lg font-semibold">AgriMarketplace</h3>
             <p className="text-sm text-muted-foreground">
-              Your premier source for agricultural insights and opportunities in Africa.
+              Votre source principale pour l'agriculture et le commerce agricole en Afrique.
             </p>
             <div className="flex space-x-4">
               <Button variant="ghost" size="icon">
@@ -31,49 +31,69 @@ export function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Quick Links</h3>
+            <h3 className="text-lg font-semibold">Navigation</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/magazine" className="hover:underline">Magazine</Link>
+                <Link href="/market" className="hover:underline">Marché</Link>
               </li>
               <li>
-                <Link href="/farms" className="hover:underline">Farm Listings</Link>
+                <Link href="/products" className="hover:underline">Produits</Link>
               </li>
               <li>
-                <Link href="/shop" className="hover:underline">Shop</Link>
+                <Link href="/articles" className="hover:underline">Articles</Link>
               </li>
               <li>
-                <Link href="/contracts" className="hover:underline">Smart Contracts</Link>
+                <Link href="/about" className="hover:underline">À propos</Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:underline">Contact</Link>
               </li>
             </ul>
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Support</h3>
+            <h3 className="text-lg font-semibold">Services</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/help" className="hover:underline">Help Center</Link>
+                <Link href="/dashboard" className="hover:underline">Tableau de bord</Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:underline">Contact Us</Link>
+                <Link href="/orders" className="hover:underline">Mes commandes</Link>
               </li>
               <li>
-                <Link href="/privacy" className="hover:underline">Privacy Policy</Link>
+                <Link href="/cart" className="hover:underline">Panier</Link>
               </li>
               <li>
-                <Link href="/terms" className="hover:underline">Terms of Service</Link>
+                <Link href="/favorites" className="hover:underline">Favoris</Link>
+              </li>
+              <li>
+                <Link href="/settings" className="hover:underline">Paramètres</Link>
               </li>
             </ul>
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Newsletter</h3>
-            <p className="text-sm text-muted-foreground">
-              Subscribe to our newsletter for the latest agricultural insights.
-            </p>
-            <div className="flex space-x-2">
-              <Input placeholder="Enter your email" type="email" />
-              <Button>Subscribe</Button>
+            <h3 className="text-lg font-semibold">Aide & Support</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/faq" className="hover:underline">FAQ</Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:underline">Nous contacter</Link>
+              </li>
+              <li>
+                <Link href="/privacy" className="hover:underline">Politique de confidentialité</Link>
+              </li>
+              <li>
+                <Link href="/terms" className="hover:underline">Conditions d'utilisation</Link>
+              </li>
+            </ul>
+            <div className="space-y-2">
+              <h4 className="text-sm font-medium">Newsletter</h4>
+              <div className="flex space-x-2">
+                <Input placeholder="Votre email" type="email" />
+                <Button>S'abonner</Button>
+              </div>
             </div>
           </div>
         </div>
@@ -82,11 +102,11 @@ export function Footer() {
 
         <div className="flex flex-col items-center justify-between space-y-4 text-center md:flex-row md:space-y-0 md:text-left">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} AgriMag. All rights reserved.
+            {new Date().getFullYear()} AgriMarketplace. Tous droits réservés.
           </p>
           <div className="flex space-x-4 text-sm text-muted-foreground">
-            <Link href="/privacy" className="hover:underline">Privacy</Link>
-            <Link href="/terms" className="hover:underline">Terms</Link>
+            <Link href="/privacy" className="hover:underline">Confidentialité</Link>
+            <Link href="/terms" className="hover:underline">Conditions</Link>
             <Link href="/cookies" className="hover:underline">Cookies</Link>
           </div>
         </div>

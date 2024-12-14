@@ -3,14 +3,14 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 
 export function HeroSection() {
   return (
     <div className="relative w-full">
       {/* Hero Image */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 rounded-bl-[50px] rounded-br-[50px] overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2"
           alt="Modern African Agriculture"
@@ -30,11 +30,11 @@ export function HeroSection() {
             className="max-w-3xl mx-auto text-center space-y-6"
           >
             <h1 className="text-4xl font-bold tracking-tighter text-white sm:text-5xl md:text-6xl lg:text-7xl">
-              Transforming African Agriculture
+              Transformons l'Agriculture Africaine
             </h1>
             <p className="text-lg text-gray-200 md:text-xl">
-              Connect with farmers, discover opportunities, and stay informed about the
-              latest agricultural innovations across Africa.
+              Connectez-vous avec les agriculteurs, découvrez des opportunités et restez informé
+              des dernières innovations agricoles à travers l'Afrique.
             </p>
             <motion.div 
               initial={{ opacity: 0 }}
@@ -43,22 +43,19 @@ export function HeroSection() {
               className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 justify-center"
             >
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                <Link href="/magazine">
-                  Explore Magazine <ArrowRight className="ml-2 h-5 w-5" />
+                <Link href="/market">
+                  Explorer le Marché <ShoppingBag className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="bg-white/10 text-white hover:bg-white/20">
-                <Link href="/farms">
-                  View Farm Listings
+                <Link href="/articles">
+                  Voir les Articles <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
             </motion.div>
           </motion.div>
         </div>
       </div>
-
-      {/* Overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-black/25" />
     </div>
   );
 }

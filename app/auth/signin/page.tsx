@@ -23,7 +23,7 @@ export default function SignInPage() {
         </div>
         <div className="relative flex justify-center text-xs uppercase">
           <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
+            Ou continuer avec
           </span>
         </div>
       </div>
@@ -31,9 +31,9 @@ export default function SignInPage() {
       <OAuthButtons />
 
       <p className="mt-4 text-center text-sm text-muted-foreground">
-        Don&apos;t have an account?{" "}
+        Vous n'avez pas de compte ?{" "}
         <Link href="/auth/signup" className="text-primary hover:underline">
-          Sign up
+          S'inscrire
         </Link>
       </p>
     </Card>

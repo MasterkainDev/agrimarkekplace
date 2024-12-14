@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
@@ -8,6 +9,7 @@ import { UserNav } from "./user-nav";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js";
+import { ShoppingCart } from "lucide-react";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -15,7 +17,6 @@ export function Navbar() {
   const supabase = createClientComponentClient();
 
   useEffect(() => {
-    // Récupérer l'utilisateur au chargement
     const fetchUser = async () => {
       try {
         const { data: { user: currentUser }, error } = await supabase.auth.getUser();
@@ -23,7 +24,6 @@ export function Navbar() {
           console.error("Error fetching user:", error.message);
           return;
         }
-        console.log("Current user:", currentUser); // Pour le débogage
         setUser(currentUser);
       } catch (error) {
         console.error("Error in fetchUser:", error);
@@ -32,9 +32,7 @@ export function Navbar() {
 
     fetchUser();
 
-    // S'abonner aux changements d'état d'authentification
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      console.log("Auth state changed:", session?.user); // Pour le débogage
       setUser(session?.user ?? null);
     });
 
@@ -48,9 +46,13 @@ export function Navbar() {
       <div className="container flex h-14 items-center">
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="hidden font-bold sm:inline-block">
-              AgriMarketplace
-            </span>
+            <Image
+              src="/logo.svg"
+              alt="AgriMarketplace Logo"
+              width={150}
+              height={40}
+              className="h-8 w-auto"
+            />
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
             <Link
@@ -89,6 +91,15 @@ export function Navbar() {
             >
               À propos
             </Link>
+            <Link
+              href="/contact"
+              className={cn(
+                "transition-colors hover:text-foreground/80",
+                pathname === "/contact" ? "text-foreground" : "text-foreground/60"
+              )}
+            >
+              Contact
+            </Link>
           </nav>
         </div>
 
@@ -97,6 +108,11 @@ export function Navbar() {
             {/* Ajouter la recherche ici si nécessaire */}
           </div>
           <nav className="flex items-center space-x-2">
+            <Button variant="ghost" size="icon" asChild>
+              <Link href="/cart">
+                <ShoppingCart className="h-5 w-5" />
+              </Link>
+            </Button>
             {user ? (
               <>
                 <Button variant="ghost" asChild>
