@@ -15,21 +15,33 @@ export function Navbar() {
   const supabase = createClientComponentClient();
 
   useEffect(() => {
-    const getUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
+    // Récupérer l'utilisateur au chargement
+    const fetchUser = async () => {
+      try {
+        const { data: { user: currentUser }, error } = await supabase.auth.getUser();
+        if (error) {
+          console.error("Error fetching user:", error.message);
+          return;
+        }
+        console.log("Current user:", currentUser); // Pour le débogage
+        setUser(currentUser);
+      } catch (error) {
+        console.error("Error in fetchUser:", error);
+      }
     };
 
-    getUser();
+    fetchUser();
 
+    // S'abonner aux changements d'état d'authentification
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      console.log("Auth state changed:", session?.user); // Pour le débogage
       setUser(session?.user ?? null);
     });
 
     return () => {
       subscription.unsubscribe();
     };
-  }, [supabase.auth]);
+  }, [supabase]);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -79,13 +91,21 @@ export function Navbar() {
             </Link>
           </nav>
         </div>
+
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <div className="w-full flex-1 md:w-auto md:flex-none">
             {/* Ajouter la recherche ici si nécessaire */}
           </div>
-          <nav className="flex items-center">
+          <nav className="flex items-center space-x-2">
             {user ? (
-              <UserNav user={user} />
+              <>
+                <Button variant="ghost" asChild>
+                  <Link href="/dashboard">
+                    Tableau de bord
+                  </Link>
+                </Button>
+                <UserNav user={user} />
+              </>
             ) : (
               <Button asChild variant="ghost">
                 <Link href="/auth/signin">
