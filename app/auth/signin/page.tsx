@@ -11,8 +11,8 @@ export default function SignInPage() {
   return (
     <Card className="p-8">
       <AuthHeader
-        title="Welcome back"
-        description="Enter your email to sign in to your account"
+        title="Connexion"
+        description="Entrez votre email pour vous connecter à votre compte"
       />
 
       <SignInForm />
