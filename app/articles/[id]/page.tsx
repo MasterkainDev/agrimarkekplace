@@ -7,62 +7,90 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Calendar, Clock, User, Share2, Bookmark, ThumbsUp } from "lucide-react";
 
-// Simuler les données de l'article
-const article = {
-  id: 1,
-  title: "L'Agriculture Durable en Afrique : Tendances et Innovations",
-  excerpt: "Découvrez les dernières innovations en matière d'agriculture durable et comment elles transforment le paysage agricole africain.",
-  content: `
-    <p>L'agriculture africaine est en pleine transformation. Les agriculteurs adoptent de plus en plus de pratiques durables et innovantes pour faire face aux défis du changement climatique et de la sécurité alimentaire.</p>
+// Simuler les données des articles
+const articles = [
+  {
+    id: 1,
+    title: "L'Agriculture Durable en Afrique : Tendances et Innovations",
+    excerpt: "Découvrez les dernières innovations en matière d'agriculture durable et comment elles transforment le paysage agricole africain.",
+    content: `
+      <p>L'agriculture africaine est en pleine transformation. Les agriculteurs adoptent de plus en plus de pratiques durables et innovantes pour faire face aux défis du changement climatique et de la sécurité alimentaire.</p>
 
-    <h2>Les Innovations Clés</h2>
-    <p>Parmi les innovations les plus prometteuses, on trouve :</p>
-    <ul>
-      <li>L'agriculture de précision assistée par drone</li>
-      <li>Les systèmes d'irrigation intelligents</li>
-      <li>Les techniques de culture hydroponique</li>
-      <li>L'utilisation de l'intelligence artificielle pour la prévision des récoltes</li>
-    </ul>
+      <h2>Les Innovations Clés</h2>
+      <p>Parmi les innovations les plus prometteuses, on trouve :</p>
+      <ul>
+        <li>L'agriculture de précision assistée par drone</li>
+        <li>Les systèmes d'irrigation intelligents</li>
+        <li>Les techniques de culture hydroponique</li>
+        <li>L'utilisation de l'intelligence artificielle pour la prévision des récoltes</li>
+      </ul>
 
-    <h2>Impact sur les Communautés</h2>
-    <p>Ces innovations ont un impact significatif sur les communautés rurales :</p>
-    <ul>
-      <li>Augmentation des rendements agricoles</li>
-      <li>Réduction de la consommation d'eau</li>
-      <li>Amélioration des revenus des agriculteurs</li>
-      <li>Création d'emplois dans le secteur technologique agricole</li>
-    </ul>
+      <h2>Impact sur les Communautés</h2>
+      <p>Ces innovations ont un impact significatif sur les communautés rurales :</p>
+      <ul>
+        <li>Augmentation des rendements agricoles</li>
+        <li>Réduction de la consommation d'eau</li>
+        <li>Amélioration des revenus des agriculteurs</li>
+        <li>Création d'emplois dans le secteur technologique agricole</li>
+      </ul>
 
-    <h2>Perspectives d'Avenir</h2>
-    <p>L'avenir de l'agriculture africaine s'annonce prometteur, avec de nombreuses opportunités de développement et d'innovation. Les investissements dans ce secteur continuent de croître, attirant l'attention des acteurs locaux et internationaux.</p>
-  `,
-  category: "Innovation",
-  mainImage: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-  author: {
-    name: "Dr. Aminata Diallo",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80",
-    bio: "Experte en agriculture durable et innovation agricole",
+      <h2>Perspectives d'Avenir</h2>
+      <p>L'avenir de l'agriculture africaine s'annonce prometteur, avec de nombreuses opportunités de développement et d'innovation. Les investissements dans ce secteur continuent de croître, attirant l'attention des acteurs locaux et internationaux.</p>
+    `,
+    category: "Innovation",
+    mainImage: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    author: {
+      name: "Dr. Aminata Diallo",
+      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80",
+      bio: "Experte en agriculture durable et innovation agricole",
+    },
+    date: "14 Dec 2023",
+    readTime: "5 min",
+    tags: ["Agriculture Durable", "Innovation", "Technologie", "Afrique"],
   },
-  date: "14 Dec 2023",
-  readTime: "5 min",
-  tags: ["Agriculture Durable", "Innovation", "Technologie", "Afrique"],
-  relatedArticles: [
-    {
-      id: 2,
-      title: "Guide Complet sur la Culture du Cacao Bio",
-      image: "https://images.unsplash.com/photo-1528903384637-blcd564ebaf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-      category: "Guide",
+  {
+    id: 2,
+    title: "Les Marchés Agricoles en Afrique de l'Ouest",
+    excerpt: "Une analyse approfondie des tendances des marchés agricoles en Afrique de l'Ouest et des opportunités émergentes.",
+    content: `
+      <p>Les marchés agricoles en Afrique de l'Ouest connaissent une transformation rapide, portée par la digitalisation et l'émergence de nouvelles plateformes de commerce.</p>
+      
+      <h2>Évolution des Marchés</h2>
+      <p>Les principaux changements observés incluent :</p>
+      <ul>
+        <li>Adoption des plateformes de commerce électronique</li>
+        <li>Modernisation des systèmes de distribution</li>
+        <li>Amélioration de la traçabilité des produits</li>
+        <li>Développement des paiements mobiles</li>
+      </ul>
+    `,
+    category: "Marchés",
+    mainImage: "https://images.unsplash.com/photo-1573483587794-5686ab6d1c2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    author: {
+      name: "Moussa Koné",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80",
+      bio: "Analyste des marchés agricoles",
     },
-    {
-      id: 3,
-      title: "L'Impact du Changement Climatique sur l'Agriculture",
-      image: "https://images.unsplash.com/photo-1508847154043-be5407fcaa5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-      category: "Environnement",
-    },
-  ],
-};
+    date: "13 Dec 2023",
+    readTime: "4 min",
+    tags: ["Marchés", "Commerce", "Afrique de l'Ouest", "Digital"],
+  },
+];
 
-export default function ClientArticlePage({ params }: { params: { id: string } }) {
+export async function generateStaticParams() {
+  return articles.map((article) => ({
+    id: article.id.toString(),
+  }));
+}
+
+export default function ArticlePage({ params }: { params: { id: string } }) {
+  const article = articles.find(a => a.id === parseInt(params.id)) || articles[0];
+  return (
+    <ClientArticlePage article={article} />
+  );
+}
+
+function ClientArticlePage({ article }: { article: any }) {
   return (
     <article className="container py-8">
       <div className="max-w-4xl mx-auto">
@@ -153,12 +181,12 @@ export default function ClientArticlePage({ params }: { params: { id: string } }
         <div>
           <h2 className="text-2xl font-bold mb-4">Articles Similaires</h2>
           <div className="grid sm:grid-cols-2 gap-6">
-            {article.relatedArticles.map((related) => (
+            {articles.filter(a => a.id !== article.id).map((related) => (
               <Link href={`/articles/${related.id}`} key={related.id}>
                 <Card className="overflow-hidden hover:shadow-lg transition-shadow">
                   <div className="relative aspect-video">
                     <Image
-                      src={related.image}
+                      src={related.mainImage}
                       alt={related.title}
                       fill
                       className="object-cover"
