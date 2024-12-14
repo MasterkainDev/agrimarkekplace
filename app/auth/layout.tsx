@@ -1,12 +1,12 @@
 "use client";
 
-import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Authentication - AgriMarketplace",
-  description: "Authentication pages for AgriMarketplace",
+  description: "Authentication pages for AgriMarketplace"
 };
 
 export default function AuthLayout({
