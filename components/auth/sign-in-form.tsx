@@ -10,10 +10,15 @@ import { Label } from "@/components/ui/label";
 import { Icons } from "@/components/icons";
 import { useToast } from "@/hooks/use-toast";
 import { signInSchema, type SignInFormData } from "@/lib/auth";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useRouter } from "next/navigation";
 
 export function SignInForm() {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const supabase = createClientComponentClient();
+  const router = useRouter();
+  
   const { register, handleSubmit, formState: { errors } } = useForm<SignInFormData>({
     resolver: zodResolver(signInSchema),
   });
@@ -21,17 +26,26 @@ export function SignInForm() {
   async function onSubmit(data: SignInFormData) {
     setIsLoading(true);
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      const { error } = await supabase.auth.signInWithPassword({
+        email: data.email,
+        password: data.password,
+      });
+
+      if (error) {
+        throw error;
+      }
+
       toast({
         title: "Success",
         description: "You have successfully signed in.",
       });
+      
+      router.refresh();
+      router.push("/dashboard");
     } catch (error) {
       toast({
         title: "Error",
-        description: "Invalid email or password.",
+        description: error.message || "Invalid email or password.",
         variant: "destructive",
       });
     } finally {

@@ -9,10 +9,15 @@ import { Label } from "@/components/ui/label";
 import { Icons } from "@/components/icons";
 import { useToast } from "@/hooks/use-toast";
 import { signUpSchema, type SignUpFormData } from "@/lib/auth";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useRouter } from "next/navigation";
 
 export function SignUpForm() {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const supabase = createClientComponentClient();
+  const router = useRouter();
+
   const { register, handleSubmit, formState: { errors } } = useForm<SignUpFormData>({
     resolver: zodResolver(signUpSchema),
   });
@@ -20,17 +25,30 @@ export function SignUpForm() {
   async function onSubmit(data: SignUpFormData) {
     setIsLoading(true);
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      const { error } = await supabase.auth.signUp({
+        email: data.email,
+        password: data.password,
+        options: {
+          data: {
+            name: data.name,
+          },
+        },
+      });
+
+      if (error) {
+        throw error;
+      }
+
       toast({
         title: "Account created",
         description: "Please check your email to verify your account.",
       });
+
+      router.push("/auth/signin");
     } catch (error) {
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again.",
+        description: error.message || "Something went wrong. Please try again.",
         variant: "destructive",
       });
     } finally {
