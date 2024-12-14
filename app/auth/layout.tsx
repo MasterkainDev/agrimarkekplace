@@ -2,12 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Authentication - AgriMarketplace",
-  description: "Authentication pages for AgriMarketplace"
-};
 
 export default function AuthLayout({
   children,
