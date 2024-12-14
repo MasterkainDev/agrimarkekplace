@@ -45,7 +45,7 @@ export function SignUpForm() {
       });
 
       router.push("/auth/signin");
-    } catch (error) {
+    } catch (error: any) {
       toast({
         title: "Error",
         description: error.message || "Something went wrong. Please try again.",
