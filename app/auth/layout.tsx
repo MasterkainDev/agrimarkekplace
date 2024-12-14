@@ -1,10 +1,12 @@
+"use client";
+
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Authentication - AgriMag",
-  description: "Authentication forms built using the components.",
+  title: "Authentication - AgriMarketplace",
+  description: "Authentication pages for AgriMarketplace",
 };
 
 export default function AuthLayout({
@@ -25,16 +27,14 @@ export default function AuthLayout({
               height={40}
               className="mr-2"
             />
-            AgriMarketplace
+            <span>AgriMarketplace</span>
           </Link>
         </div>
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              "This platform has revolutionized how we connect with agricultural opportunities
-              across Africa. The insights and connections we've gained are invaluable."
+              "La meilleure plateforme pour connecter agriculteurs et acheteurs."
             </p>
-            <footer className="text-sm">Sofia Davis</footer>
           </blockquote>
         </div>
       </div>
